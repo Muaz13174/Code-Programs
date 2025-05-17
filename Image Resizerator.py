@@ -1,7 +1,7 @@
 import cv2
 from time import sleep as slp
-img = cv2.resize(cv2.imread("test pic.jpg"),(300,300))
-rimg = ""
+img = cv2.imread("test pic.jpg")
+rimg = cv2.resize(img,(300,300))
 cv2.imshow(str(img.shape),img)
 if cv2.waitKey(0) == 27:
     cv2.destroyAllWindows()
@@ -17,3 +17,4 @@ while True:
         print("Sorry, no such size.")
         continue
     break
+cv2.imshow(rimg)
