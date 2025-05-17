@@ -1,10 +1,10 @@
 import cv2
 from time import sleep as slp
-img = cv2.imread("test pic.jpg")
+img = cv2.resize(cv2.imread("test pic.jpg"),(300,300))
 rimg = ""
 cv2.imshow(str(img.shape),img)
-slp(5)
-cv2.destroyAllWindows()
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
 while True:
     size = str(input("\nWhat size do you want the image to be? (small/medium/large): ")).lower()
     if size == "s" or size == "small":
@@ -16,5 +16,4 @@ while True:
     else:
         print("Sorry, no such size.")
         continue
-    cv2.imshow(" ",rimg)
     break
