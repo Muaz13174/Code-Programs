@@ -1,6 +1,6 @@
 import cv2
 from time import sleep as slp
-img = cv2.imread("test pic.jpg")
+img = cv2.resize(cv2.imread("test pic.jpg"),(300,300))
 cv2.imshow(str(img.shape),img)
 if cv2.waitKey(0) == 27:
     cv2.destroyAllWindows()
@@ -18,8 +18,9 @@ def imgs():
             rimg = cv2.resize(img,(600,600))
             break
         else:
-            print("Sorry, no such size.")
+            print("\nSorry, no such size.")
             continue
+    print("\n")
     cv2.imshow(str(" "),rimg)
 imgs()
 if cv2.waitKey(0) == 27:
