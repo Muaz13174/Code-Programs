@@ -10,17 +10,21 @@ def imgs():
         size = str(input("\nWhat size do you want the image to be? (small/medium/large): ")).lower()
         if size == "s" or size == "small":
             rimg = cv2.resize(img,(200,200))
+            cv2.imwrite("input_image_small.jpg",rimg)
             break
         elif size == "m" or size == "medium":
             rimg = cv2.resize(img,(400,400))
+            cv2.imwrite("input_image_medium.jpg",rimg)
             break
         elif size == "l" or size == "large":
             rimg = cv2.resize(img,(600,600))
+            cv2.imwrite("input_image_large.jpg",rimg)
             break
         else:
             print("\nSorry, no such size.")
             continue
     cv2.imshow(str(rimg.shape),rimg)
+
 imgs()
 if cv2.waitKey(0) == 27:
     cv2.destroyAllWindows()
