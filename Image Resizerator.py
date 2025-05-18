@@ -24,6 +24,7 @@ def imgs():
             print("\nSorry, no such size.")
             continue
     cv2.imshow(str(rimg.shape),rimg)
+
 imgs()
 if cv2.waitKey(0) == 27:
     cv2.destroyAllWindows()
