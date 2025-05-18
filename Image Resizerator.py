@@ -20,7 +20,6 @@ def imgs():
         else:
             print("\nSorry, no such size.")
             continue
-    print("\n")
     cv2.imshow(str(rimg.shape),rimg)
 imgs()
 if cv2.waitKey(0) == 27:
