@@ -1,6 +1,28 @@
 import cv2
 import os
-import keyboard as kb
+global fn
+fn = ""
+while 1:
+    fn = str(input("Enter the name of your file : "))
+    if not os.path.exists(fn):
+        print(f"Error : '{fn}' does not exist")
+        continue
+    img = cv2.imread(fn)
+    if img is None:
+        print(f"Failed to read '{fn}'. Type another filename.")
+        continue
+    else:
+        break
+if img is None:
+    print("Error : Image not found")
+else:
+    ft = "original"
+global o_r
+o_r = img[:,:,2]
+global o_g
+o_g = img[:,:,1]
+global o_b
+o_b = img[:,:,0]
 def acf(i,ft,its = 50):
     fimg = i.copy()
     if ft == "rt":
@@ -24,25 +46,12 @@ def acf(i,ft,its = 50):
         fimg[:,:,0] = cv2.subtract(fimg[:,:,0],its)
     elif ft == "dg":
         fimg[:,:,1] = cv2.subtract(fimg[:,:,1],its)
+    elif ft =="o":
+        fimg[:,:,0] = o_b
+        fimg[:,:,1] = o_g
+        fimg[:,:,2] = o_r
     return fimg
-global fn
-fn = ""
-while 1:
-    fn = str(input("Enter the name of your file : "))
-    if not os.path.exists(fn):
-        print(f"Error : '{fn}' does not exist")
-        continue
-    img = cv2.imread(fn)
-    if img is None:
-        print(f"Failed to read '{fn}'. Type another filename.")
-        continue
-    else:
-        break
-if img is None:
-    print("Error : Image not found")
-else:
-    ft = "original"
-print("Press the following keys to apply filters :\n    -> r - Red Tint\n    -> b - Blue Tint\n    -> g - Green Tint\n    -> i - Increase Color Intensity\n    -> d - Decrease Color Intensity\n    -> p - Reset Image\n    -> q - Quit")
+print("Press the following keys to apply filters :\n    -> r - Red Tint\n    -> b - Blue Tint\n    -> g - Green Tint\n    -> i - Increase Color Intensity\n    -> d - Decrease Color Intensity\n    -> s - Save Image\n    -> p - Reset Image\n    -> q - Quit")
 global fi
 fi = img.copy()
 global ic
@@ -51,12 +60,6 @@ global dc
 dc = 50
 fi = acf(fi,ft)
 cv2.imshow("Filtered Image :",fi)
-global o_r
-o_r = img[:,:,2]
-global o_g
-o_g = img[:,:,1]
-global o_b
-o_b = img[:,:,0]
 while 1:
     k = cv2.waitKey(0) & 0xFF
     if k == ord("r"):
@@ -77,7 +80,7 @@ while 1:
         while 1:
             iyon = str(input("Do you want to input increase (default : 50)? : ")).lower()
             if iyon == "no":
-                pass
+                break
             elif iyon == "yes":
                 print("OK!",end = " ")
                 while 1:
@@ -93,12 +96,12 @@ while 1:
                         print("Umm...OK?")
                     else:
                         print("OK")
-                        fi = acf(fi,ft,ic)
-                        cv2.imshow("Filtered Image :",fi)
                     break
             else:
                 print("Not valid!")
-        continue
+            fi = acf(fi,ft,ic)
+            cv2.imshow("Filtered Image :",fi)
+            break
     elif k == ord("d"):
         print("Press the following keys to choose which color to mitigate :\n    -> 'r' - Decrease Red Tint\n    -> 'b' - Decrease Blue Tint\n    -> 'g' - Decrease Green Tint")
         dk = cv2.waitKey(0)
@@ -111,7 +114,7 @@ while 1:
         while 1:
             dyon = str(input("Do you want to input decrease (default : 50)? : ")).lower()
             if dyon == "no":
-                pass
+                break
             elif dyon == "yes":
                 print("OK!",end = " ")
                 while 1:
@@ -128,16 +131,23 @@ while 1:
                         dc = 1
                     else:
                         print("OK")
-                    fi = acf(fi,ft,dc)
-                    cv2.imshow("Filtered Image :",fi)
                     break
             else:
                 print("Not valid!")
-        continue
+            fi = acf(fi,ft,dc)
+            cv2.imshow("Filtered Image :",fi)
+            break
+    elif k == ord("s"):
+        n = str(input("What name do you give to this image? : "))
+        while 1:
+            fe = str(input("What file extension do you want to use (.jpg, .jpeg, .png, .bmp, .tiff, or .webp) : ")).lower()
+            if fe not in [".jpg",".jpeg",".png",".bmp",".tiff",".webp"]:
+                print("Error : It's not in the preset extentions.")
+            else:
+                break
+        cv2.imwrite(filename = n+fe,img = fi)
     elif k == ord("p"):
-        fi[:,:,0] = o_b
-        fi[:,:,1] = o_g
-        fi[:,:,2] = o_r
+        ft = "o"
         print("File Resetted")
     elif k == ord("q"):
         print("Exiting...")
