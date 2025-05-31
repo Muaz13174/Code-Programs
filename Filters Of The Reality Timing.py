@@ -142,7 +142,7 @@ while 1:
         while 1:
             fe = str(input("What file extension do you want to use (.jpg, .jpeg, .png, .bmp, .tiff, or .webp) : ")).lower()
             if fe not in [".jpg",".jpeg",".png",".bmp",".tiff",".webp"]:
-                print("Error : It's not in the preset extentions.")
+                print(f"Error : {fe} is not in the preset extentions.")
             else:
                 break
         cv2.imwrite(filename = n+fe,img = fi)
