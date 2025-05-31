@@ -25,7 +25,8 @@ def acf(i,ft,its = 50):
     elif ft == "dg":
         fimg[:,:,1] = cv2.subtract(fimg[:,:,1],its)
     return fimg
-img = None
+global fn
+fn = ""
 while 1:
     fn = str(input("Enter the name of your file : "))
     if not os.path.exists(fn):
@@ -41,7 +42,7 @@ if img is None:
     print("Error : Image not found")
 else:
     ft = "original"
-print("Press the following keys to apply filters :\n    -> r - Red Tint\n    -> b - Blue Tint\n    -> g - Green Tint\n    -> /|\ (up arrow) - Increase Color Intensity\n    -> \|/ (down arrow) - Decrease Color Intensity\n    -> p - Reset Image\n    -> q - Quit")
+print("Press the following keys to apply filters :\n    -> r - Red Tint\n    -> b - Blue Tint\n    -> g - Green Tint\n    -> i - Increase Color Intensity\n    -> d - Decrease Color Intensity\n    -> p - Reset Image\n    -> q - Quit")
 global fi
 fi = img.copy()
 global ic
@@ -50,6 +51,12 @@ global dc
 dc = 50
 fi = acf(fi,ft)
 cv2.imshow("Filtered Image :",fi)
+global o_r
+o_r = img[:,:,2]
+global o_g
+o_g = img[:,:,1]
+global o_b
+o_b = img[:,:,0]
 while 1:
     k = cv2.waitKey(0) & 0xFF
     if k == ord("r"):
@@ -128,7 +135,9 @@ while 1:
                 print("Not valid!")
         continue
     elif k == ord("p"):
-        fi = img.copy()
+        fi[:,:,0] = o_b
+        fi[:,:,1] = o_g
+        fi[:,:,2] = o_r
         print("File Resetted")
     elif k == ord("q"):
         print("Exiting...")
