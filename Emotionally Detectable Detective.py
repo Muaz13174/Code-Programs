@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model #type: ignore
+from tensorflow.keras.models import load_model as lm #type: ignore
 from keras.preprocessing.image import img_to_array as ita
 fc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-em = load_model("emotion_model.h5")
+em = lm("emotion_model.h5")
 el = ["Angry","Disgust","Fear","Happy","Sad","Surprise","Neutral"]
 c = cv2.VideoCapture(0)
 if not c.isOpened():
