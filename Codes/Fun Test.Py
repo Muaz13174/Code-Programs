@@ -26,3 +26,28 @@ def sm():
                     print(j+",")
             else:
                 print(j)
+#how to check for existing files for cv2.imwrite()
+def guf(bp):
+    from pathlib import Path
+    b = Path(bp)
+    i = 1
+    nwp = b
+    while nwp.exists():
+        nwp = b.with_name(f"{b.stem}_{i}{b.suffix}")
+        i += 1
+    return str(nwp)
+def dsa(d):
+    de = str(d)[-1]
+    if de == "1":
+        return f"{d}st"
+    elif de == "2":
+        return f"{d}nd"
+    elif de == "3":
+        return f"{d}rd"
+    else:
+        return f"{d}th"
+def tsf(fn):
+    from datetime import datetime as dt
+    from pathlib import Path
+    nwfn = Path(fn)
+    return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
