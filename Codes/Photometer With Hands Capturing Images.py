@@ -51,9 +51,9 @@ while 1:
                 if (ct - lat) > dbt:
                     cv2.putText(img,"Picture Captured!",(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
                     lat = ct
-                    cv2.imwrite(f"Pic_{int(t.time())}",img)
+                    cv2.imwrite(fr"Outputs\Pic_{int(t.time())}.jpg",img)
                     print("Picture Saved!")
-            elif (abs(tx - mx) < 30 and abs(ty,my) < 30) or (abs(tx - rx) < 30 and abs(ty,ry) < 30) or (abs(tx - px) < 30 and abs(ty,py) < 30):
+            elif (abs(tx - mx) < 30 and abs(ty - my) < 30) or (abs(tx - rx) < 30 and abs(ty - ry) < 30) or (abs(tx - px) < 30 and abs(ty - py) < 30):
                 if (ct - lat) > dbt:
                     cftrs = (cftrs + 1) % len(ftrs)
                     lat = ct
