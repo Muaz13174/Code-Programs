@@ -57,7 +57,7 @@ while 1:
                 if (ct - lat) > dbt:
                     cftrs = (cftrs + 1) % len(ftrs)
                     lat = ct
-                    print(f"Switched filter to {ftrs[cftrs]}")
+                    print(f"Switched filter to {str(ftrs[cftrs]).lower()}")
     fimg = af(img,ftrs[cftrs])
     title = "Gesture-Controlled Photo App"
     if ftrs[cftrs] == "GRAYSCALE":
