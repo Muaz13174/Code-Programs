@@ -1,6 +1,8 @@
 # for testing purposes only
 from sys import exit as exit
 from colorama import Fore as f
+import time as t
+import threading as thr
 def summation(start,end):
     d = 1
     if end < start:
@@ -53,3 +55,13 @@ def tsf(fn):
     return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
 import os
 ip = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","Pictures","test pic.jpg")
+time_up = False
+def countdown(seconds):
+    global time_up
+    for i in range(seconds,0,-1):
+        print(f"\rTime left: {i}s", end="")
+        t.sleep(1)
+        if time_up:
+            return
+    time_up = True
+    print("\n⏰ Time's up!")
