@@ -2,7 +2,8 @@ import requests as rqs
 import random as rd
 import html
 EDUCATION_CATEGORY_ID = rd.randint(9,32)
-APIURL = f"https://opentdb.com/api.php?amount=10&category={EDUCATION_CATEGORY_ID}&type=multiple"
+NUM_OF_QUESTIONS = rd.randint(5,50)
+APIURL = f"https://opentdb.com/api.php?amount={NUM_OF_QUESTIONS}&category={EDUCATION_CATEGORY_ID}&type=multiple"
 def geq():
     rsp = rqs.get(APIURL)
     if rsp.status_code == 200:
