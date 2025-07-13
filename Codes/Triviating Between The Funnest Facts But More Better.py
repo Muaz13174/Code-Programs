@@ -10,19 +10,28 @@ import select
 def get_answer_with_timer(seconds = 10):
     bar_length = 20
     start = t.time()
+    input_str = ""
+    print()
     while True:
         elapsed = t.time() - start
         remaining = seconds - elapsed
         if remaining <= 0:
             print("\r⏰ Time's up!          ")
-            ws.Beep(1000, 500)
+            ws.Beep(1000,500)
             return None
         filled = int(bar_length * (remaining / seconds))
         bar = "#" * filled + "-" * (bar_length - filled)
-        print(f"\r⏳ Time left: [{bar}] {int(remaining)}s", end="", flush=True)
-        if sys.stdin in select.select([sys.stdin], [], [], 1)[0]:
-            answer = sys.stdin.readline().strip()
-            return answer
+        print(f"\r⏳ Time left : [{bar}] {int(remaining)} s  Your answer : {input_str}", end = "",flush = True)
+        if msv.kbhit():
+            char = msv.getwch()
+            if char == "\r":
+                print()
+                return input_str.strip()
+            elif char == "\b":
+                input_str = input_str[:-1]
+            elif char in "1234":
+                input_str += char
+        t.sleep(1)
 EDUCATION_CATEGORY_ID = rd.randint(9,32)
 NUM_OF_QUESTIONS = 10
 while 1:
@@ -47,6 +56,7 @@ def get_cat():
     return {c["id"]: c["name"] for c in rqs.get("https://opentdb.com/api_category.php").json()["trivia_categories"]}
 def rq():
     global EDUCATION_CATEGORY_ID
+    global NUM_OF_QUESTIONS
     qts = geq()
     if not qts:
         print("Failed to fetch educational questions.")
@@ -87,8 +97,9 @@ def rq():
     end_time = t.time()
     total_time = int(end_time - start_time)
     print("\n🎉 Quiz Complete!")
-    print(f"✅ Final Score     : {s}/{len(qts)}")
-    print(f"📊 Percentage      : {(s / len(qts)) * 100:.1f}%")
-    print(f"⏱️  Total Time Taken : {total_time} seconds")
+    print(f"✅ Final Score                           : {s}/{len(qts)}")
+    print(f"📊 Percentage Correct                    : {(s / len(qts)) * 100:.1f}%")
+    print(f"⏱️  Total Time Taken                     : {total_time} seconds")
+    print(f"⏱️  Average Time Taken For Each Question : {round(total_time/NUM_OF_QUESTIONS,2)} seconds")
 if __name__ == "__main__":
     rq()
