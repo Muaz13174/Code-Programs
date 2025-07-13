@@ -7,7 +7,7 @@ import winsound as ws
 import msvcrt as msv
 import sys
 import select
-def get_answer_with_timer(seconds):
+def get_answer_with_timer(seconds = 10):
     bar_length = 20
     start = t.time()
     while True:
