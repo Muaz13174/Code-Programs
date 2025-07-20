@@ -1,0 +1,1 @@
+HP_API_KEY = "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"
