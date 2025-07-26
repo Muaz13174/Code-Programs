@@ -57,9 +57,9 @@ while 1:
                 cv2.rectangle(img,(50,int(vb)),(85,400),(255,0,0),-1)
                 cv2.putText(img,f"Volume : {int(np.interp(d,[30,300],[0,100]))}%",(40,450),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0))
             elif hl == "Left":
-                b = np.interp(d,[30,300],[0,100])
+                b = np.interp(d,[30,300],[400,150])
                 try:
-                    sbc.set_brightness(b)
+                    sbc.set_brightness(int(np.interp(d,[30,300],[0,100])))
                 except Exception as e:
                     print(f"Error adjusting brightness : {e}")
                 cv2.rectangle(img,(100,150),(135,400),(0,255,0),2)
