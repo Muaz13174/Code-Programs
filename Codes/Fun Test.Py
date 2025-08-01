@@ -77,4 +77,4 @@ while True:
             print(f"The factors of {num} is",", ".join(map(str,fac[0:-2])),"and",str(fac[-1]) + ".")
     except ValueError as e:
         print(f"Error : {e}")
-        continue
+        break
