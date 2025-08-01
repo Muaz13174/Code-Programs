@@ -79,3 +79,4 @@ def facrun():
         except ValueError as e:
             print(f"Error : {e}")
             break
+facrun()
