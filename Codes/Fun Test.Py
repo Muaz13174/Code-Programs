@@ -65,16 +65,17 @@ def factors_of_a_number(num):
             pass
     fac.append(num)
     return fac
-while True:
-    try:
-        num = int(input("Enter number : "))
-        fac = factors_of_a_number(num)
-        if len(fac) == 1:
-            print(f"The factor of {num} is {fac[0]}.")
-        elif len(fac) == 2:
-            print(f"The factors of {num} are {fac[0]} and {fac[1]}.")
-        elif len(fac) >= 3:
-            print(f"The factors of {num} is",", ".join(map(str,fac[0:-2])),"and",str(fac[-1]) + ".")
-    except ValueError as e:
-        print(f"Error : {e}")
-        break
+def facrun():
+    while True:
+        try:
+            num = int(input("Enter number : "))
+            fac = factors_of_a_number(num)
+            if len(fac) == 1:
+                print(f"The factor of {num} is {fac[0]}.")
+            elif len(fac) == 2:
+                print(f"The factors of {num} are {fac[0]} and {fac[1]}.")
+            elif len(fac) >= 3:
+                print(f"The factors of {num} is",", ".join(map(str,fac[0:-2])),"and",str(fac[-1]) + ".")
+        except ValueError as e:
+            print(f"Error : {e}")
+            break
