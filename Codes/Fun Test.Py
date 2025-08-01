@@ -75,7 +75,7 @@ def facrun():
             elif len(fac) == 2:
                 print(f"The factors of {num} are {fac[0]} and {fac[1]}.")
             elif len(fac) >= 3:
-                print(f"The factors of {num} is",", ".join(map(str,fac[0:-1])),"and",str(fac[-1]) + ".")
+                print(f"The factors of {num} are",", ".join(map(str,fac[0:-1])),"and",str(fac[-1]) + ".")
         except ValueError as e:
             print(f"Error : {e}")
             break
