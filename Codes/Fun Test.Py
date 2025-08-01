@@ -52,6 +52,29 @@ def tsf(fn):
     from datetime import datetime as dt
     from pathlib import Path
     nwfn = Path(fn)
-    return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
+    #return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
 import os
 ip = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","Pictures","test pic.jpg")
+def factors_of_a_number(num):
+    fac = [1]
+    from math import floor as floor
+    for i in range(2,floor(num/2)+1,1):
+        if num%i == 0:
+            fac.append(i)
+        else:
+            pass
+    fac.append(num)
+    return fac
+while True:
+    try:
+        num = int(input("Enter number : "))
+        fac = factors_of_a_number(num)
+        if len(fac) == 1:
+            print(f"The factor of {num} is {fac[0]}.")
+        elif len(fac) == 2:
+            print(f"The factors of {num} are {fac[0]} and {fac[1]}.")
+        elif len(fac) >= 3:
+            print(f"The factors of {num} is",", ".join(map(str,fac[0:-2])),"and",str(fac[-1]) + ".")
+    except ValueError as e:
+        print(f"Error : {e}")
+        continue
