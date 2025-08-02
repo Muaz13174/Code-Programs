@@ -65,6 +65,19 @@ def factors_of_a_number(num):
             pass
     fac.append(num)
     return fac
+def pair_fac(num):
+    fac = factors_of_a_number(num)
+    li = 0
+    ri = -1
+    pair_facs_list = []
+    while len(fac) > 2:
+        pair_facs_list.append([fac[li],fac[ri]])
+        fac = fac[1:-1]
+    if len(fac) == 2:
+        pair_facs_list.append(fac)
+    elif len(fac) == 1:
+        pair_facs_list.append(fac[0],fac[0])
+    return pair_facs_list
 def facrun():
     while True:
         try:
@@ -79,4 +92,4 @@ def facrun():
         except ValueError as e:
             print(f"Error : {e}")
             break
-facrun()
+print(pair_fac(1200))
