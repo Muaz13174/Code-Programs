@@ -19,7 +19,7 @@ def gift(prompt : str) -> I.Image:
 def main():
     print("Welcome to the Text-To-Image Generator!\nType \"exit\" to quit the program.\n")
     while 1:
-        prompt = input("Enter a description for the image you want to generate : \n ->")
+        prompt = input("Enter a description for the image you want to generate : \n -> ")
         if prompt.lower() == "exit":
             print("Goodbye!") ; break
         print("\nGenerating Image...\n")
