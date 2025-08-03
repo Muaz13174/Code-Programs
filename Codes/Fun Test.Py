@@ -92,4 +92,3 @@ def facrun():
         except ValueError as e:
             print(f"Error : {e}")
             break
-print(pair_fac(1200))
