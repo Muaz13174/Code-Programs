@@ -92,3 +92,6 @@ def facrun():
         except ValueError as e:
             print(f"Error : {e}")
             break
+def color_generator():
+    from random import randint as r
+    return [r(0,255),r(0,255),r(0,255)]
