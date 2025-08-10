@@ -1,5 +1,9 @@
 import requests as rqs
 from config import HP_API_KEY as HAK
+from PIL import Image as I
+from transformers import BlipProcessor as BP
+from transformers import BlipForConditionalGeneration as BFCG
+# The "Not Working" Code
 MODELID = "nlpconnect/vit-gpt2-image-captioning"
 APIURL = fr"https://api-inference.huggingface.co/models/{MODELID}"
 hdrs = {"Authorization":f"Bearer {HAK}"}
@@ -20,5 +24,17 @@ def cptnsnglimg():
     cptn = rslt[0].get("generated_text","No caption found.")
     print(f"Image : {imgsrc}")
     print(f"Caption : {cptn}")
+# The "Working" Code
+def theworkingcptnsnglimg():
+    imgurl = r"https://tse3.mm.bing.net/th/id/OIP.uHaqRdiMzWSMCR2LzsmhtQHaEZ?pid=Api&p=0&h=180"
+    img = I.open(rqs.get(imgurl,stream = True).raw)
+    processer = BP.from_pretrained("Salesforce/blip-image-captioning-base")
+    mdl = BFCG.from_pretrained("Salesforce/blip-image-captioning-base")
+    ipts = processer(images = img,return_tensors = "pt")
+    otpt = mdl.generate(**ipts)
+    cptn = processer.decode(otpt[0],skip_special_tokens = True)
+    print(f"Image Description : {cptn}")
 if __name__ == "__main__":
-    cptnsnglimg()
+    #cptnsnglimg()
+    #print("\n")
+    theworkingcptnsnglimg()
