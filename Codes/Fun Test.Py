@@ -97,7 +97,7 @@ def color_generator():
     return [r(0,255),r(0,255),r(0,255)]
 def is_prime(num):
     divisibles = []
-    for i in range(1,num):
+    for i in range(1,num+2):
         if num%i == 0:
             divisibles.append(i)
     if len(divisibles) == 2:
@@ -108,7 +108,9 @@ def prime_fac(num):
     prime = 2
     prime_factors = []
     store = num
+    prime_loop = True
     while True:
+        prime_loop = True
         if store == 1:
             break
         if store%prime == 0:
@@ -116,10 +118,19 @@ def prime_fac(num):
             store = store/prime
             continue
         else:
-            while True:
-                prime += 1
-                if is_prime(prime):
-                    break
-            continue
+            prime += 1
+            if is_prime(prime):
+                continue
+            else:
+                while prime_loop:
+                    prime += 1
+                    if is_prime(prime):
+                        prime_loop = False
     return prime_factors
-print(prime_fac(100))
+def ask_for_prime_fac():
+    try:
+        num = int(input("Enter a whole number to prime factorise : "))
+    except ValueError as ve:
+        print("Error : {ve}")
+        return
+    print(f"The prime factor(s) are {','.join(str(prime_fac(num)))}")
