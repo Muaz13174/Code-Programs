@@ -95,3 +95,31 @@ def facrun():
 def color_generator():
     from random import randint as r
     return [r(0,255),r(0,255),r(0,255)]
+def is_prime(num):
+    divisibles = []
+    for i in range(1,num):
+        if num%i == 0:
+            divisibles.append(i)
+    if len(divisibles) == 2:
+        return True
+    else:
+        return False
+def prime_fac(num):
+    prime = 2
+    prime_factors = []
+    store = num
+    while True:
+        if store == 1:
+            break
+        if store%prime == 0:
+            prime_factors.append(prime)
+            store = store/prime
+            continue
+        else:
+            while True:
+                prime += 1
+                if is_prime(prime):
+                    break
+            continue
+    return prime_factors
+print(prime_fac(100))
