@@ -133,4 +133,6 @@ def ask_for_prime_fac():
     except ValueError as ve:
         print("Error : {ve}")
         return
-    print(f"The prime factor(s) are {','.join(str(prime_fac(num)))}")
+    prime_fac_list = prime_fac(num)
+    str_of_sequence = [str(p) for p in prime_fac_list]
+    print(f"The prime factor(s) are {','.join(str_of_sequence)}")
