@@ -16,7 +16,7 @@ def summation(start,end):
 #-difference between summation from a to b and summation from -a to b is exactly equal to a
 #a = 12
 #b = 430
-#print(summation(a,b) - summation(-a,b)) # = a
+#summation(a,b) - summation(-a,b) = a
 def sm():
     z = [["q","w","e","r","t","y","u","i","o","p"],["a","s","d","f","g","h","j","k","l"],["z","x","c","v","b","n","m"]]
     for i in z:
@@ -57,7 +57,6 @@ import os
 ip = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","Pictures","test pic.jpg")
 def factors_of_a_number(num):
     fac = [1]
-    from math import floor as floor
     for i in range(2,num,1):
         if num%i == 0:
             fac.append(i)
@@ -94,7 +93,7 @@ def facrun():
             break
 def color_generator():
     from random import randint as r
-    return [r(0,255),r(0,255),r(0,255)]
+    return (r(0,255),r(0,255),r(0,255))
 def is_prime(num):
     divisibles = []
     for i in range(1,num+2):
