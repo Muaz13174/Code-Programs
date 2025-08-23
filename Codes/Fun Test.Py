@@ -1,8 +1,6 @@
 # for testing purposes only
 from sys import exit as exit
 from colorama import Fore as f
-import time as t
-import threading as thr
 def summation(start,end):
     d = 1
     if end < start:
@@ -55,7 +53,7 @@ def tsf(fn):
     #return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
 import os
 ip = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","Pictures","test pic.jpg")
-def factors_of_a_number(num):
+def factors_of_a_number(num : int):
     fac = [1]
     for i in range(2,num,1):
         if num%i == 0:
@@ -64,7 +62,7 @@ def factors_of_a_number(num):
             pass
     fac.append(num)
     return fac
-def pair_fac(num):
+def pair_fac(num : int):
     fac = factors_of_a_number(num)
     li = 0
     ri = -1
@@ -73,9 +71,9 @@ def pair_fac(num):
         pair_facs_list.append([fac[li],fac[ri]])
         fac = fac[1:-1]
     if len(fac) == 2:
-        pair_facs_list.append(fac)
+        pair_facs_list.append([fac[0],fac[1]])
     elif len(fac) == 1:
-        pair_facs_list.append(fac[0],fac[0])
+        pair_facs_list.append([fac[0],fac[0]])
     return pair_facs_list
 def facrun():
     while True:
@@ -94,7 +92,7 @@ def facrun():
 def color_generator():
     from random import randint as r
     return (r(0,255),r(0,255),r(0,255))
-def is_prime(num):
+def is_prime(num : int):
     divisibles = []
     for i in range(1,num+2):
         if num%i == 0:
@@ -103,7 +101,7 @@ def is_prime(num):
         return True
     else:
         return False
-def prime_fac(num):
+def prime_fac(num : int):
     prime = 2
     prime_factors = []
     store = num
