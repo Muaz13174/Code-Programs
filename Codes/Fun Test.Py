@@ -148,4 +148,11 @@ def country_order_randomizer():
     randlist = countries
     for i in range(times+1):
         shuffle(randlist)
-    return [randlist,times]
+    the_str = ""
+    for c in randlist:
+        if c == randlist(len(randlist)-1):
+            the_str += str(c)
+            break
+        else:
+            the_str += str(c)+","
+    return [randlist,the_str,times]
