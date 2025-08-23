@@ -139,4 +139,4 @@ def ask_for_prime_fac():
         print("Error : {ve}")
         return
     str_of_sequence = [str(p) for p in prime_fac(num)]
-    print(f"The prime factor(s) are {' × '.join(str_of_sequence)}")
+    print(f"The prime factor(s) of {num} are {' × '.join(str_of_sequence)} | {num} = {' × '.join(str_of_sequence)}")
