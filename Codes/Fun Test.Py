@@ -50,7 +50,7 @@ def tsf(fn):
     from datetime import datetime as dt
     from pathlib import Path
     nwfn = Path(fn)
-    #return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
+    return str(f"{nwfn.stem}_{dt.now().strftime(f"%A {dsa(dt.now().day)} %B %Y - %I:%M:%S %p")}{nwfn.suffix}")
 import os
 ip = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","Pictures","test pic.jpg")
 def factors_of_a_number(num : int):
