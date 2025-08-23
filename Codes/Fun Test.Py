@@ -54,6 +54,8 @@ def tsf(fn):
 import os
 ip = os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","Pictures","test pic.jpg")
 def factors_of_a_number(num : int):
+    if not isinstance(num,int):
+        raise TypeError(f"Expected int, got {type(num).__name__} instead.")
     fac = [1]
     for i in range(2,num,1):
         if num%i == 0:
@@ -63,6 +65,8 @@ def factors_of_a_number(num : int):
     fac.append(num)
     return fac
 def pair_fac(num : int):
+    if not isinstance(num,int):
+        raise TypeError(f"Expected int, got {type(num).__name__} instead.")
     fac = factors_of_a_number(num)
     li = 0
     ri = -1
@@ -93,6 +97,8 @@ def color_generator():
     from random import randint as r
     return (r(0,255),r(0,255),r(0,255))
 def is_prime(num : int):
+    if not isinstance(num,int):
+        raise TypeError(f"Expected int, got {type(num).__name__} instead.")
     divisibles = []
     for i in range(1,num+2):
         if num%i == 0:
@@ -102,6 +108,8 @@ def is_prime(num : int):
     else:
         return False
 def prime_fac(num : int):
+    if not isinstance(num,int):
+        raise TypeError(f"Expected int, got {type(num).__name__} instead.")
     prime = 2
     prime_factors = []
     store = num
