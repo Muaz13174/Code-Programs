@@ -66,7 +66,7 @@ def transcribe_audio(data,rate,width,filename = "transcription.txt",/):
 def show_waveform(data,rate,/):
     samples = np.frombuffer(data,np.int16)
     time_length = np.linspace(0,len(samples)/rate,len(samples))
-    plt.plot(t,samples)
+    plt.plot(time_length,samples)
     plt.title("Your Voice Waveform")
     plt.xlabel("Time (seconds)")
     plt.ylabel("Amplitude")
