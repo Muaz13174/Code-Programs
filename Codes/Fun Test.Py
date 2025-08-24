@@ -157,7 +157,9 @@ def country_order_randomizer():
         else:
             the_str += str(c)+","
     return [randlist,the_str,times]
-def nth_prime(nth):
+def nth_prime(nth:int):
+    if not isinstance(nth,int):
+        raise TypeError(f"Expected int, got {type(nth).__name__} instead.")
     primes_list = []
     prime = 0
     while True:
@@ -166,3 +168,30 @@ def nth_prime(nth):
         if len(primes_list) == nth:
             return primes_list[-1]
         prime += 1
+def show_nth_prime():
+    try:
+        num = int(input("Enter the term number of primes : "))
+    except ValueError as e:
+        raise TypeError(f"Expected int, got {type(num).__name__} instead.")
+    prime = show_nth_prime(num)
+    term = dsa(num)
+    print(f"The {term} prime is {prime}.")
+    return
+from typing import Union as U
+from decimal import Decimal
+from fractions import Fraction
+from numbers import Real
+def add_all(*args:U[int,float,Decimal,Fraction]):
+    the_sum = 0
+    for i in args:
+        if not (isinstance(i,Real) and type(i) is not bool):
+            raise TypeError(f"Expected Real, got {type(i).__name__} instead.")
+        the_sum += i
+    return the_sum
+def multiply_all(*args:U[int,float,Decimal,Fraction]):
+    the_product = 0
+    for i in args:
+        if not (isinstance(i,Real) and type(i) is not bool):
+            raise TypeError(f"Expected Real, got {type(i).__name__} instead.")
+        the_product = i * the_product
+    return the_product
