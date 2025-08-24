@@ -76,7 +76,7 @@ def pair_fac(num : int):
         pair_facs_list.append([fac[li],fac[ri]])
         fac = fac[1:-1]
     if len(fac) == 2:
-        pair_facs_list.append([fac[0],fac[1]])
+        pair_facs_list.append(fac)
     elif len(fac) == 1:
         pair_facs_list.append([fac[0],fac[0]])
     return pair_facs_list
